@@ -1,5 +1,7 @@
 <?php
 // <!-- saved from url=(0055)http://gugggly.com/templates/doc-web/index.html#welcome --
+
+
 session_start();
 
 if(isset($_GET['logout'])){
