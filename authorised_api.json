@@ -1,0 +1,283 @@
+{
+"text":"AUTHORISED API FOR BATCAVE
+All authorised API are required to pass APPSESSID in request header as under.
+
+<b>APPSESSID: lj1v2mkr7fvdtnbfn10t474ff5</b>
+
+The value of APPSESSID is avilable through login api",	
+"data":[
+{
+"route":"$app->post(\"login\", [ \"uses\" =>\"AdminController@login\"]);",
+"desc":"Login as admin, to batcave services to retrive APPSESSID and use this in request header.",
+"title":"Login",
+"method":"POST",
+"urls":["http://api.foodtalkindia.com/login"],
+"body":"{\"email\":\"shashi@foodtalkindia.com\", \"password\":\"sk@foodtalk\"}",
+"response":"{\"message\": \"login success\", \"status\": \"OK\", \"code\": \"200\", \"result\": {\"APPSESSID\": \"u7h3jqelflrrg2obokk56vhkv5\", \"email\": \"shashi@foodtalkindia.com\", \"name\": \"Shashi Kant Singh\"} }"
+},
+{
+"route":"$app->delete(\"logout\", [\"middleware\" => \"auth\", \"uses\" =>\"AdminController@logout\"]);",
+"desc":"Logout, This will destroy APPSESSID from batcave services",
+"method":"DELETE",
+"urls":[	
+"http://api.foodtalkindia.com/logout"]
+},
+{"route":"$app->get(\"'search/user/{text}\", [ \"uses\" =>\"UserController@search\"]);",
+"desc":"Search for user matching SEARCH_TEXT,<br>And tag comma saperated add to url to search a user with particular tag/s ",
+"title":"Search User",
+"method":"GET ",
+"urls":[
+	"http://api.foodtalkindia.com/api/search/user/{SEARCH_TEXT}",
+	"http://api.foodtalkindia.com/api/search/user/{SEARCH_TEXT}/tags/{COMMA,SAPERATED,TAGS}",
+	"http://api.foodtalkindia.com/api/search/user/tags/{COMMA,SAPERATED,TAGS}"
+
+]},
+{"route":"$app->get(\"{type:event|contest}\", [ \"uses\" =>\"EventController@listAll\"]);",
+"desc":"List all events/contest",
+"title":"Get all events",
+"method":"GET ",
+"urls":[
+	"http://api.foodtalkindia.com/api/event",
+	"http://api.foodtalkindia.com/api/contest"
+
+]},
+{"route":"$app->get(\"{type:event|contest}/{status:upcomming|ongoing|disabled|pending|active|past}\", [ \"uses\" =>\"EventController@listAll\"]);",
+"desc":"Retrive  all active disabled/active/pending/ events and contest",
+"title":"Get events/contests",
+"method":"GET",
+"urls":[
+	"http://api.foodtalkindia.com/api/event/disabled",
+	"http://api.foodtalkindia.com/api/event/pending",
+	"http://api.foodtalkindia.com/api/event/active",
+	"http://api.foodtalkindia.com/api/contest/disabled",
+	"http://api.foodtalkindia.com/api/contest/pending",
+	"http://api.foodtalkindia.com/api/contest/active"
+]},
+{
+"route":"$app->post(\"{type:event|contest}\",\"EventController@create\");",
+"title":"Add a event/contest",
+"desc":"Create a event/contest",
+"method":"POST",
+"urls":[	
+	"http://api.foodtalkindia.com/api/event",
+	"http://api.foodtalkindia.com/api/contest"
+	],
+	"body":"{\"name\": \"new events\", \"start_date\": \"2015-12-25 00:00:00\", \"end_date\": \"2015-12-15 00:00:00\", \"location\": \"location\", \"cost\": \"3000\", \"capacity\": \"50\", \"sub_category\": \"22\", \"colobrators\": \"323423\", \"metadata\": {\"any\":\"thing you want\", \"can\":\"be hear\"},\"tags\":\"[ 'Tagname1', 'tagname12' , 't2agname1']\" }"
+},
+{
+"route":"$app->put(\"{type:event|contest}/{id}\",\"EventController@update\");",
+"desc":"Update a event/contest,<br> To delete tags just pass a blank array <b>\"tags\": [ ]</b>",
+"method":"PUT ",
+"urls":[	
+	"http://api.foodtalkindia.com/api/event/:ID",
+	"http://api.foodtalkindia.com/api/contest/:ID"
+	],
+	"body":"{\"name\": \"TEST Event\", \"start_date\": \"2015-12-05 00:00:00\", \"end_date\": \"2015-12-15 00:00:00\", \"location\": \"location\", \"cost\": \"3000\", \"capacity\": \"50\", \"timings\": null, \"sub_category_id\": \"2\", \"colobrators\": \"adasdasdasdas\", \"metadata\": {\"any\":\"thing you want\", \"can\":\"be hear\"},\"tags\":\"[ 'Tagname1', 'tagname12' , 't2agname1']\" }"
+},
+{
+"route":"$app->delete(\"{type:event|contest}/{id}\",\"EventController@delete\");",
+"desc":"Delete an events/contests",
+"method":"DELETE",
+"urls":[	
+	"http://api.foodtalkindia.com/api/event/:ID",
+	"http://api.foodtalkindia.com/api/contest/:ID"
+]},
+{
+"route":"$app->post(\"{type:event}/{id}/vendors\",\"EventController@addVendors\");",
+"desc":"Add vendors for a event",
+"method":"POST",
+"urls":["http://api.foodtalkindia.com/api/event/:EVENT_ID/vendors"],
+"body":"{\"vendors_id\":\"7\"}"
+},
+{
+"route":"$app->delete(\"{type:event}/{id}/vendors/{vendors_id}\",\"EventController@deleteVendors\");",
+"desc":"Delete a vendors from a event",
+"title":"Remove vendor",
+"method":"DELETE",
+"urls":["http://api.foodtalkindia.com/api/event/:EVENT_ID/vendors/:VENDORS_ID"]
+},
+{
+"route":"$app->get(\"{type:vendor|media|bloggers|influencer}/category\", [ \"uses\" =>\"VendorsCategoryController@listAll\"]);",
+"desc":"List vendor's category",
+"method":"GET",
+"urls":[
+	"http://api.foodtalkindia.com/api/vendor/category",
+	"http://api.foodtalkindia.com/api/media/category",
+	"http://api.foodtalkindia.com/api/bloggers/category",
+	"http://api.foodtalkindia.com/api/influencer/category"
+
+]},
+{
+"route":"$app->post(\"{type:vendor|media|bloggers|influencer}/category\", [ \"uses\" =>\"VendorsCategoryController@create\"]);",
+"desc":"Create vendor's category",
+"method":"POST",
+"urls":[	
+	"http://api.foodtalkindia.com/api/vendor/category",
+	"http://api.foodtalkindia.com/api/media/category",
+	"http://api.foodtalkindia.com/api/bloggers/category",
+	"http://api.foodtalkindia.com/api/influencer/category"
+	],
+	"body":"{\"name\": \"Name goes here\", \"desc\": \"DESC goes here\"}"
+},
+{
+"route":"$app->get(\"{type:vendor|media|bloggers|influencer}/category/{id}\", [ \"uses\" =>\"VendorsCategoryController@get\"]);",
+"desc":"Get a vendor's category's, details",
+"method":"GET",
+"urls":[	
+	"http://api.foodtalkindia.com/api/vendor/category/:ID",
+	"http://api.foodtalkindia.com/api/media/category/:ID",
+	"http://api.foodtalkindia.com/api/bloggers/category/:ID",
+	"http://api.foodtalkindia.com/api/influencer/category/:ID"
+
+]},
+{
+"route":"$app->get(\"{type:vendor|media|bloggers|influencer}/category/{id}/{with:vendors}\", [ \"uses\" =>\"VendorsCategoryController@get\"]);",
+"title":"Get vendors in a cat",
+"desc":"Get a vendor's category's details with respective vendors ",
+"method":"GET",
+"urls":[	
+"http://api.foodtalkindia.com/api/vendor/category/:ID/vendors",
+	"http://api.foodtalkindia.com/api/media/category/:ID/vendors",
+	"http://api.foodtalkindia.com/api/bloggers/category/:ID/vendors",
+	"http://api.foodtalkindia.com/api/influencer/category/:ID/vendors"
+]},						
+{
+"route":"$app->put(\"{type:vendor|media|bloggers|influencer}/category/{id}\", [ \"uses\" =>\"VendorsCategoryController@update\"]);",
+"title":"Update vendors a cat",
+"desc":"Update vendors a category's details ",
+"method":"PUT",
+"urls":[	
+"http://api.foodtalkindia.com/api/vendor/category/:ID",
+	"http://api.foodtalkindia.com/api/media/category/:ID",
+	"http://api.foodtalkindia.com/api/bloggers/category/:ID",
+	"http://api.foodtalkindia.com/api/influencer/category/:ID"
+	],
+	"body":"{\"name\": \"Name goes here\", \"desc\": \"DESC goes here\"}"
+},
+{
+"route":"$app->delete(\"{type:vendor|media|bloggers|influencer}/category/{id}\", [ \"uses\" =>\"VendorsCategoryController@delete\"]);",
+"desc":"Delete vendors a category",
+"method":"DELETE",
+"urls":[	
+	"http://api.foodtalkindia.com/api/vendor/category/:ID",
+	"http://api.foodtalkindia.com/api/media/category/:ID",
+	"http://api.foodtalkindia.com/api/bloggers/category/:ID",
+	"http://api.foodtalkindia.com/api/influencer/category/:ID"
+
+
+]},
+{
+"route":"$app->get(\"{type:vendor|media|bloggers|influencer}\", [ \"uses\" =>\"VendorsController@listAll\"]);",
+"desc":"List All Vendors",
+"method":"GET ",
+"urls":[	
+	"http://api.foodtalkindia.com/api/vendor",
+	"http://api.foodtalkindia.com/api/media",
+	"http://api.foodtalkindia.com/api/bloggers",
+	"http://api.foodtalkindia.com/api/influencer"
+
+]},
+{
+"route":"$app->post(\"{type:vendor|media|bloggers|influencer}\", [ \"uses\" =>\"VendorsController@create\"]);",
+"desc":"Create a vendor",
+"method":"POST",
+"urls":[	
+"http://api.foodtalkindia.com/api/vendor",
+	"http://api.foodtalkindia.com/api/media",
+	"http://api.foodtalkindia.com/api/bloggers",
+	"http://api.foodtalkindia.com/api/influencer"
+	],
+	"body":"{\"name\": \"Instant picture printing\", \"orgnaization\": \"Instant picture printing\", \"loaction\": \"Delhi\", \"address\": null, \"email\": \"null@mail.com\", \"phone\": \"9582220988\", \"publication\": null, \"designation\": null, \"website\": null, \"blog\": null, \"url\": null, \"vendors_category_id\": \"3\", \"capicity\": null }"
+},
+{
+"route":"$app->get(\"{type:vendor|media|bloggers|influencer}/{id}\", [ \"uses\" =>\"VendorsController@get\"]);",
+"title":"Get a vendor",
+"desc":"Get a vendor\"s details ",
+"method":"GET",
+"urls":[	
+	"http://api.foodtalkindia.com/api/vendor/:ID",
+	"http://api.foodtalkindia.com/api/media/:ID",
+	"http://api.foodtalkindia.com/api/bloggers/:ID",
+	"http://api.foodtalkindia.com/api/influencer/:ID"
+]},
+{
+"route":"$app->put(\"{type:vendor|media|bloggers|influencer}/{id}\", [ \"uses\" =>\"VendorsController@update\"]);",
+"title":"Update a vendor",
+"desc":"Updating a vendors\"s details ",
+"method":"PUT",
+"urls":[	
+	"http://api.foodtalkindia.com/api/vendor/:ID",
+	"http://api.foodtalkindia.com/api/media/:ID",
+	"http://api.foodtalkindia.com/api/bloggers/:ID",
+	"http://api.foodtalkindia.com/api/influencer/:ID"
+	],
+	"body":"{\"name\": \"Instant picture printing\", \"orgnaization\": \"Instant picture printing\", \"loaction\": null, \"address\": null, \"email\": null, \"phone\": \"9582220988\", \"publication\": null, \"designation\": null, \"website\": null, \"blog\": null, \"url\": null, \"vendors_category_id\": \"3\", \"capicity\": null, \"type\": \"vendor\"}"
+},
+{
+"route":"$app->delete(\"{type:vendor|media|bloggers|influencer}/{id}\", [ \"uses\" =>\"VendorsController@delete\"]);",
+"desc":"Delete a vendor",
+"method":"DELETE",
+"urls":[	
+"http://api.foodtalkindia.com/api/vendor/:ID",
+	"http://api.foodtalkindia.com/api/media/:ID",
+	"http://api.foodtalkindia.com/api/bloggers/:ID",
+	"http://api.foodtalkindia.com/api/influencer/:ID"
+]},
+{
+"route":"$app->get(\"sub_category\",\"SubCategoryController@listAll\");",
+"desc":"Get event sub cat",
+"method":"GET",
+"urls":[	
+"http://api.foodtalkindia.com/api/sub_category"]
+},					
+
+{
+"route":"$app->post(\"sub_category\",\"SubCategoryController@create\");",
+"title":"Create a sub cat",
+"desc":"Create new event\"s sub category",
+"method":"POST",
+"urls":[	
+"http://api.foodtalkindia.com/api/sub_category"
+]},
+{
+"route":"$app->get(\"sub_category/{id}\",\"SubCategoryController@get\");",
+"title":"Get a sub cat",
+"desc":"Get an event\"s sub category details",
+"method":"GET",
+"urls":[	
+"http://api.foodtalkindia.com/api/sub_category/:ID"
+]},
+{
+"route":"$app->get(\"sub_category/{id}/{with:events}\",\"SubCategoryController@get\");",
+"title":"Get events of a sub cat",
+"desc":"List all events in same category for a given sub category with its details",
+"method":"GET",
+"urls":[	
+"http://api.foodtalkindia.com/api/sub_category/:ID/events"
+]},					
+{
+"route":"$app->put(\"sub_category/{id}\",\"SubCategoryController@update\");",
+"title":"Update event's sub cat",
+"desc":"Update an event's sub category",
+"method":"PUT",
+"urls":["http://api.foodtalkindia.com/api/sub_category/:ID"],
+	"body":"{\"name\": \"sub catg 2\", \"desc\": \"new desc\"}"
+},
+{
+"route":"$app->delete(\"sub_category/{id}\",\"SubCategoryController@delete\");",
+"title":"Delete a sub cat",
+"desc":"Delete an event\"s sub category details ",
+"method":"DELETE",
+"urls":[	
+"http://api.foodtalkindia.com/api/sub_category/:ID"
+					
+]},
+{
+"route":"$app->get(\"dashboard/batcave\",\"AccountsAnalyticsController@index\");",
+"desc":"Get stats",
+"desc":"Get all dashboard analytics",
+"method":"GET",
+"urls":[	
+"http://api.foodtalkindia.com/api/dashboard/batcave"
+]}
+]}
