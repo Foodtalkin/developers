@@ -6,6 +6,15 @@ All authorised API are required to pass APPSESSID in request header as under.
 
 The value of APPSESSID is avilable through login api",	
 "data":[
+{"route":"$app->get(\"contact\", [ \"uses\" =>\"ContactController@listAll\"]);",
+"desc":"List all Contact form filled",
+"title":"Get all  Contacts",
+"method":"GET ",
+"urls":[
+	"http://api.foodtalkindia.com/api/contact"
+]},
+
+
 {
 "route":"$app->post(\"login\", [ \"uses\" =>\"AdminController@login\"]);",
 "desc":"Login as admin, to batcave services to retrive APPSESSID and use this in request header.",

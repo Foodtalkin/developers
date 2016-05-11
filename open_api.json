@@ -3,12 +3,23 @@
 These servises are open and dosen't require autharization,
 to use them just use normal http request.
 ",
-"data":[{"route":"$app->get(\"user\",\"UserController@listAll\");",
+"data":[
+
+{"route":"$app->post(\"contact\",\"ContactController@create\");	",
+"desc":"Creates a new entery in contact table",
+"title":"Creates a new contact",
+"method":"POST",
+"urls":[
+	"http://api.foodtalk.in/contact"
+],
+"body":"{\"name\": \"Raj naam to suna he hoga\", \"email\": \"raj3@testing.com\", \"phone\": \"232323\", \"web\": \"web url\", \"purpose\": \"your purpose\", \"location\": \"address\", \"dateTime\": \"2016-04-13\", \"message\": \"no message \", \"status\": \"0\"}"
+},
+{"route":"$app->get(\"user\",\"UserController@listAll\");",
 "desc":"Get list of all users, which are active",
 "title":"Get all users",
 "method":"GET",
 "urls":[
-	"http://api.foodtalkindia.com/user"
+	"http://api.foodtalk.in/user"
 
 ]},
 {"route":"$app->get(\"user/{id}\",\"UserController@get\");",
@@ -16,7 +27,7 @@ to use them just use normal http request.
 "title":"Get a user",
 "method":"GET",
 "urls":[
-	"http://api.foodtalkindia.com/user/:ID"
+	"http://api.foodtalk.in/user/:ID"
 
 ]},
 {"route":"$app->get(\"user/{id}/{with:events}\",\"UserController@get\");",
@@ -24,7 +35,7 @@ to use them just use normal http request.
 "title":"Get a user's event",
 "method":"GET",
 "urls":[
-	"http://api.foodtalkindia.com/user/:ID/events"
+	"http://api.foodtalk.in/user/:ID/events"
 
 ]},
 {"route":"$app->post(\"user\",\"UserController@create\");	",
@@ -32,7 +43,7 @@ to use them just use normal http request.
 "title":"Creates a new user",
 "method":"POST",
 "urls":[
-	"http://api.foodtalkindia.com/user"
+	"http://api.foodtalk.in/user"
 ],
 "body":"{\"name\":\"Raj naam to suna he hoga\", \"dob\": \"31-01-2000\", \"email\":\"raj3@testing.com\", \"gender\":\"M\", \"facebook_id\": \"812387712\", \"contact\": \"812387712\", \"twitter_handle\": \"twitter_handle\", \"facebook_handle\":\"facebook_handle\", \"instagram_handle\":\"instagram_handle\", \"address\":\"address\", \"metadata\":{\"q1\":\"answer to que 1\", \"q2\":\"answer to que 2\"} }"
 
@@ -42,7 +53,7 @@ to use them just use normal http request.
 "title":"Email availability",
 "method":"POST",
 "urls":[
-	"http://api.foodtalkindia.com/emailavilability"
+	"http://api.foodtalk.in/emailavilability"
 	],
 	"body":"{\"email\":\"email@example.com\"}",
 	"response": "{\"result\": true}"
@@ -53,7 +64,7 @@ to use them just use normal http request.
 "title":"Update a user",
 "method":"PUT",
 "urls":[
-	"http://api.foodtalkindia.com/user/:ID"
+	"http://api.foodtalk.in/user/:ID"
 	],
 	"body":"{\"name\":\"Raj naam to suna he hoga\", \"dob\": \"31-01-2000\", \"email\":\"raj3@testing.com\", \"gender\":\"M\", \"facebook_id\": \"812387712\", \"contact\": \"812387712\", \"twitter_handle\": \"twitter_handle\",\"facebook_handle\":\"facebook_handle\", \"instagram_handle\":\"instagram_handle\", \"address\":\"address\", \"metadata\":{\"q1\":\"answer to que 1\", \"q2\":\"answer to que 2\"} }"
 }
@@ -63,18 +74,18 @@ to use them just use normal http request.
 "desc":"Delete an existing user, with user_id as ID",
 "method":"DELETE",
 "urls":[
-	"http://api.foodtalkindia.com/user/:ID"
+	"http://api.foodtalk.in/user/:ID"
 ]},
 
 
 {
 "route":"$app->post(\"user/{id}/participation\",\"UserController@participation\");",
-"desc":"Create a user\"s event participation, with user_id as ID all the information provided will create new record for the given user(:ID) and event/contest (event_id), Original user information will not be affected through this request.<br><br> http://api.foodtalkindia.com/user/:ID/rsvp allows unique participation per event_id <br> http://api.foodtalkindia.com/user/:ID/participation allows multiple participation",
+"desc":"Create a user\"s event participation, with user_id as ID all the information provided will create new record for the given user(:ID) and event/contest (event_id), Original user information will not be affected through this request.<br><br> http://api.foodtalk.in/user/:ID/rsvp allows unique participation per event_id <br> http://api.foodtalk.in/user/:ID/participation allows multiple participation",
 "title":"Create user's participation",
 "method":"POST",
 "urls":[
-	"http://api.foodtalkindia.com/user/:ID/rsvp",
-	"http://api.foodtalkindia.com/user/:ID/participation"
+	"http://api.foodtalk.in/user/:ID/rsvp",
+	"http://api.foodtalk.in/user/:ID/participation"
 ],
 	"body":"{\"events_id\":\"2\", \"email\":\"email@example.com\", \"contact\":\"7976982703\", \"payment_method\":\"INSTA MOJO\", \"quantity\":\"2\", \"payment\":\"6000\", \"response\":{\"any\":\"thing you want\", \"can\":\"be hear\"} }"
 },
@@ -83,9 +94,9 @@ to use them just use normal http request.
 "title":"Get current events",
 "method":"GET",
 "urls":[
-	"http://api.foodtalkindia.com/event/upcomming",
-	"http://api.foodtalkindia.com/event/past",
-	"http://api.foodtalkindia.com/contest/ongoing"
+	"http://api.foodtalk.in/event/upcomming",
+	"http://api.foodtalk.in/event/past",
+	"http://api.foodtalk.in/contest/ongoing"
 
 
 ]},
@@ -94,23 +105,23 @@ to use them just use normal http request.
 "title":"Get a events info",
 "method":"GET",
 "urls":[
-	"http://api.foodtalkindia.com/event/:ID",
-	"http://api.foodtalkindia.com/contest/:ID"
+	"http://api.foodtalk.in/event/:ID",
+	"http://api.foodtalk.in/contest/:ID"
 
 ]},
 {"route":"$app->get(\"{type:event|contest}/{id}/{with:participants}\",\"EventController@get\");",
 "desc":"List all participants, of an events/contests with :ID as event_id with event\"s details",
 "method":"GET",
 "urls":[
-	"http://api.foodtalkindia.com/event/:ID/participants",
-	"http://api.foodtalkindia.com/contest/:ID/participants"
+	"http://api.foodtalk.in/event/:ID/participants",
+	"http://api.foodtalk.in/contest/:ID/participants"
 ]},
 {"route":"$app->get(\"sub_category\",\"SubCategoryController@listAll\");",
 "title":"get all sub category",
 "desc":"List All sub category of event",
 "method":"GET",
 "urls":[
-	"http://api.foodtalkindia.com/sub_category"
+	"http://api.foodtalk.in/sub_category"
 
 ]},
 {"route":"$app->get(\"sub_category/{id}\",\"SubCategoryController@get\");",
@@ -118,13 +129,13 @@ to use them just use normal http request.
 "title":"get sub-cat of an event",
 "method":"GET",
 "urls":[
-	"http://api.foodtalkindia.com/sub_category/:ID"
+	"http://api.foodtalk.in/sub_category/:ID"
 ]},
 {"route":"$app->get(\"sub_category/{id}/{with:events}\",\"SubCategoryController@get\");",
 "desc":"List all events in same category, for a given sub category with its details",
 "title":"get all event of sub-cat",
 "method":"GET",
 "urls":[
-	"http://api.foodtalkindia.com/sub_category/:ID/events"
+	"http://api.foodtalk.in/sub_category/:ID/events"
 ]}
 ]}
